@@ -1,0 +1,6 @@
+tensorflow
+redis
+pandas
+gym
+grpcio
+grpcio-tools

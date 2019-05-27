@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package asynch;
+
+service DataProcessor {
+    rpc ComputeData(ComputeRequest) returns (Data) {}
+}
+
+service Database {
+    rpc SaveData(Data) returns (DatabaseReply) {}
+    rpc GetData(DatabaseRequest) returns (Data) {}
+}
+
+message ComputeRequest{
+    int32 worker_index=1;
+}
+
+message DatabaseReply{
+    repeated string key=1;
+}
+
+message DatabaseRequest{
+    repeated string key=1;
+    int32 worker_index=2;
+}
+
+message Trajectory{
+    float x=1;
+    float y=2;
+}
+
+message Data{
+    repeated Trajectory trajectories =1;
+    repeated int32 rewards=2;
+    int32 worker_index=3;
+}
